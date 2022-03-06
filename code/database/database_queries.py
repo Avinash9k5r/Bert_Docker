@@ -27,7 +27,7 @@ def write_url_clusters_to_db(words_by_cluster_no_with_distances , article_name ,
     arangoURL = os.getenv('arangoURL')
 
     from pyArango.connection import Connection
-    conn = Connection(username=arangodb_username, password=arangodb_password)
+    conn = Connection(arangoURL=arangoURL, username=arangodb_username, password=arangodb_password)
 
     try:
         db = conn.createDatabase(name=database_name) #handles creation of db
@@ -133,7 +133,7 @@ def map_keywords_with_vectors_in_db():
     arangoURL = os.getenv('arangoURL')
 
     from pyArango.connection import Connection
-    conn = Connection(username=arangodb_username, password=arangodb_password)
+    conn = Connection(arangoURL=arangoURL, username=arangodb_username, password=arangodb_password)
 
     try:
         db = conn.createDatabase(name=database_name) #handles creation of db
