@@ -32,7 +32,6 @@ import os
 curr_path = os.getcwd()
 #os.chdir("../")
 src_path = os.getcwd()
-new_path = os.path.join(src_path ,'ui')
 new_path = os.path.join(new_path ,'output')
 print(new_path)
 os.chdir(new_path)
