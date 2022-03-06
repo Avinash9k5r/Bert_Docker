@@ -42,6 +42,7 @@ arangodb_username = os.getenv("arangodb_username")
 arangodb_password = os.getenv('arangodb_password')
 database_name = os.getenv('database_name')
 article_keywords_collection = os.getenv('crawler_model_tracker')
+arangoURL = os.getenv('arangoURL')
 
 from pyArango.connection import Connection
 conn = Connection(arangoURL=arangoURL, username=arangodb_username, password=arangodb_password)
