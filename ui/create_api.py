@@ -256,21 +256,21 @@ Y = A
 
 ######################################
 def func(Y , list_of_words_final ,  inputstr):  # this func will calculate the bert substitute keyword for the mismatched word, from our list of words.
-    try:
-        X , words_in_sentence = sentence_vec(inputstr , stop_words , tokenizer , model , lemmatizer)
-        print(X)
-        print(words_in_sentence)
+   # try:
+    X , words_in_sentence = sentence_vec(inputstr , stop_words , tokenizer , model , lemmatizer)
+    print(X)
+    print(words_in_sentence)
 
-        closest, dist = pairwise_distances_argmin_min(X, Y , metric='euclidean')
-        print(len(closest))
-        print("idx -> " , closest)
+    closest, dist = pairwise_distances_argmin_min(X, Y , metric='euclidean')
+    print(len(closest))
+    print("idx -> " , closest)
 
-        for i in range(len(words_in_sentence)):
-            print('word found from final_list_of_used_word == ' , words_in_sentence[i] , ' -> ' , list_of_words_final[closest[i]] , "    dist -> " , dist[i])
-            key_word = list_of_words_final[closest[i]]
-        return {'keyword': key_word}
-    except:
-        return {'keyword': ""}
+    for i in range(len(words_in_sentence)):
+        print('word found from final_list_of_used_word == ' , words_in_sentence[i] , ' -> ' , list_of_words_final[closest[i]] , "    dist -> " , dist[i])
+        key_word = list_of_words_final[closest[i]]
+    return {'keyword': key_word}
+    #except:
+     #   return {'keyword': ""}
 ################################################################################################################
 class changeKeyword(Resource):
     def get(self):
