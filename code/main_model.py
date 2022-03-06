@@ -1,12 +1,12 @@
 #########################################################################################
 # IF YOU ARE RUNNING THIS FILE WITHOUT DOCKER, COMMENT THESE 4 LINES.
-# import os
-# print("AT START - " , os.getcwd())
-# src_path = os.getcwd()
-# new_path = os.path.join(src_path ,'code') # path to the output-folder
-# os.chdir(new_path) # gotten into the output
-# print("entered main_model module")
-# print("AFTER GETTING IN - " , os.getcwd())
+import os
+print("AT START - " , os.getcwd())
+src_path = os.getcwd()
+new_path = os.path.join(src_path ,'code') # path to the output-folder
+os.chdir(new_path) # gotten into the output
+print("entered main_model module")
+print("AFTER GETTING IN - " , os.getcwd())
 #########################################################################################
 
 from model import _3_get_word_vectors
@@ -71,50 +71,48 @@ for file in list_of_url_and_name:
     article_url = file[0]
     article_name = file[1]
 
-   # try:
-    doc = articles_Collection_tracker[article_name]
-    if doc['bert_parsed'] == True:
-        print("already parsed by bert -> " + str(article_name))
+    try:
+        doc = articles_Collection_tracker[article_name]
+        if doc['bert_parsed'] == True:
+            print("already parsed by bert -> " + str(article_name))
+            continue
+    except:
+        print("cound not access from db-crawler-model-tracker collection :-> " + str(article_name)) 
         continue
-  #  except:
-    #    print("cound not access from db-crawler-model-tracker collection :-> " + str(article_name)) 
-    #    continue
 
 
 
     
-#    try:
-    os.chdir(curr_path)
-    db , articles_Collection =  main_pipeline.main_func(article_name , article_url , model , tokenizer)
-    os.chdir(curr_path)
-    doc = articles_Collection_tracker[article_name]
-    doc['bert_parsed'] = True
-    doc.save()
-   # except:
-  #      articles_not_parsed.append(article_url)
-     #   os.chdir(curr_path)
-    #    continue
+    try:
+        os.chdir(curr_path)
+        db , articles_Collection =  main_pipeline.main_func(article_name , article_url , model , tokenizer)
+        os.chdir(curr_path)
+        doc = articles_Collection_tracker[article_name]
+        doc['bert_parsed'] = True
+        doc.save()
+    except:
+        articles_not_parsed.append(article_url)
+        os.chdir(curr_path)
+        continue
 
 ######################################################################################################
 # WRITING TO SECOND COLLECTION - KEYWORD : URLS ASSOCIATED WITH IT.
 
-#try:
-from database import database_queries
-database_queries.map_keywords_to_urls_in_db(articles_Collection, db)
-#except:
-#    print("no new keyword-urls mapped")
+try:
+    from database import database_queries
+    database_queries.map_keywords_to_urls_in_db(articles_Collection, db)
+except:
+    print("no new keyword-urls mapped")
 
 ###################################################################################################
-#try:
-from database import database_queries
-database_queries.map_keywords_with_vectors_in_db()
-#except:
-#    print("no new keyword-vectors mapped")
+try:
+    from database import database_queries
+    database_queries.map_keywords_with_vectors_in_db()
+except:
+    print("no new keyword-vectors mapped")
 ####################################################################################################
 print("###################################################################################")
 #print("URLS GIVING WEB DRIVER ERROR : " , list_web_driver_error_files)
 print("ARTICLES NOT PARSED : " , articles_not_parsed)
 print("###################################################################################")
 print("FULL CODE RAN SUCCESSFULLY")
-
-
