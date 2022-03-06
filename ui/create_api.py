@@ -1,3 +1,5 @@
+import os
+print(os.getcwd())
 from flask import Flask, request
 from flask_restful import Resource, Api
 app = Flask(__name__)
@@ -30,7 +32,8 @@ import os
 curr_path = os.getcwd()
 #os.chdir("../")
 src_path = os.getcwd()
-new_path = os.path.join(src_path ,'output')
+new_path = os.path.join(src_path ,'ui')
+new_path = os.path.join(new_path ,'output')
 print(new_path)
 os.chdir(new_path)
 print(os.getcwd())
