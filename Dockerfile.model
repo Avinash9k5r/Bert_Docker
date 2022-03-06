@@ -1,0 +1,26 @@
+FROM continuumio/miniconda3
+
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . $APP_HOME
+
+
+# RUN pip install -U pip setuptools wheel
+# RUN pip install -U spacy
+RUN pip install -r requirements_model.txt
+RUN python3 -m spacy download en_core_web_sm
+
+
+#EXPOSE 8529
+
+CMD ["python", "./code/main_model.py"]
+
+
+
+
+
+
+
+
+
+
