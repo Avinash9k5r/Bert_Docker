@@ -41,7 +41,7 @@ def get_list_of_filenames_of_urls():
     print(os.getcwd())
     
     curr_path = os.getcwd()
-    os.chdir('../')
+   # os.chdir('../')
     src_path = os.getcwd()
     new_path = os.path.join(src_path ,'data') # path to the output-folder
     new_path = os.path.join(new_path ,'url_csv_files') # path to the output-folder
