@@ -28,7 +28,7 @@ from get_arango_query_for_search_string import get_list_of_filenames_of_urls
 # need to be in the right folder
 import os
 curr_path = os.getcwd()
-os.chdir("../")
+#os.chdir("../")
 src_path = os.getcwd()
 new_path = os.path.join(src_path ,'output')
 print(new_path)
