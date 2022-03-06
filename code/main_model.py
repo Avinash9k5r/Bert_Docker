@@ -44,7 +44,7 @@ database_name = os.getenv('database_name')
 article_keywords_collection = os.getenv('crawler_model_tracker')
 
 from pyArango.connection import Connection
-conn = Connection(username=arangodb_username, password=arangodb_password)
+conn = Connection(arangoURL=arangoURL, username=arangodb_username, password=arangodb_password)
 
 try:
     db = conn.createDatabase(name=database_name) #handles creation of db
