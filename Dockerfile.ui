@@ -1,0 +1,14 @@
+FROM continuumio/miniconda3
+
+ENV APP_HOME_NEW /app_new
+WORKDIR $APP_HOME_NEW
+COPY . $APP_HOME_NEW
+
+EXPOSE 5000  
+
+RUN pip install -r requirements_ui.txt
+
+CMD ["python", "./ui/api.py"]
+
+
+
