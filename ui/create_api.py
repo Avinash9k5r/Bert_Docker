@@ -32,6 +32,7 @@ os.chdir("../")
 src_path = os.getcwd()
 new_path = os.path.join(src_path ,'output')
 os.chdir(new_path)
+print(os.chdir())
 
 def downloadDirectoryFroms3(bucketName, remoteDirectoryName):
     import boto3
@@ -54,7 +55,7 @@ bucketname = os.getenv('bucketname')
 downloadDirectoryFroms3(bucketname , "all_keyword_vectors") 
 
 os.chdir(curr_path)
-
+print(os.chdir())
 ##################################################################
 from one_time_load_files import one_load_files
 lemmatizer , stop_words = one_load_files()
