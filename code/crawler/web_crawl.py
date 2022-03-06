@@ -10,7 +10,7 @@ def crawl_all_urls_in_list(urls):
     article_keywords_collection = os.getenv('crawler_model_tracker')
 
     from pyArango.connection import Connection
-    conn = Connection(username=arangodb_username, password=arangodb_password)
+    conn = Connection(arangoURL=arangoURL, username=arangodb_username, password=arangodb_password)
 
     try:
         db = conn.createDatabase(name=database_name) #handles creation of db
@@ -33,14 +33,14 @@ def crawl_all_urls_in_list(urls):
     import os
     curr_folder = os.getcwd()
 
-    webdriver_path =  os.path.join(curr_folder ,'chromedriver.exe')
-    driver = webdriver.Chrome(webdriver_path) #run once only. will do the job for all urls
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('--disable-extensions')
-    # options.add_argument('--headless')
-    # options.add_argument('--disable-gpu')
-    # options.add_argument('--no-sandbox')
-    # driver = webdriver.Chrome(chrome_options=options)
+    #webdriver_path =  os.path.join(curr_folder ,'chromedriver.exe')
+    #driver = webdriver.Chrome(webdriver_path) #run once only. will do the job for all urls
+    options = webdriver.ChromeOptions()
+    options.add_argument('--disable-extensions')
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(chrome_options=options)
 
     list_web_driver_error_files = []
     list_of_filenames_generated = []
