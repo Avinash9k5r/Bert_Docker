@@ -236,7 +236,7 @@ def sentence_vec(var , stop_words , tokenizer , model , lemmatizer):
 ######################################
 import os
 curr_path = os.getcwd()
-os.chdir('../')
+#os.chdir('../')
 src_dir =  os.getcwd()
 new_path = os.path.join(src_dir ,'output')
 new_path = os.path.join(new_path , 'all_keyword_vectors')
